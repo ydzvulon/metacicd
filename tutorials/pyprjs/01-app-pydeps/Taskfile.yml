@@ -14,7 +14,7 @@ tasks:
 
   _tut-step-03-init:
     cmds:
-      - task do-tut-step TARGET=step_03_pytest
+      - TARGET=step_03_pytest task do-tut-step 
 
   _require_target:
     params:
