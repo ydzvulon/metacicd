@@ -11,7 +11,7 @@ It will have cli inteface `./pydes --info`
 
 In repo_pydeps dir run
 ```
-python pydeps/vpy.py
+python pydeps/pydeps.py
 ```
 
 You will see 'Hello from pydeps'
