@@ -2,6 +2,9 @@
 
 ## v0.0.3--
 
+In version 0.0.3 we are going to introduce pytests,
+using same semantics as in dirty test vesion `task test`
+
 - wip
 
 ## v0.0.2--2020-04-25

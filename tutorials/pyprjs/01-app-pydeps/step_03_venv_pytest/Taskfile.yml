@@ -15,7 +15,8 @@ tasks:
   test:
     desc: Run tests on pydeps
     cmds:
-      - python pydeps/pydeps.py --test
+      - pytest pydeps/test_*.py -s
+      # - python pydeps/pydeps.py --test
 
   run:
     desc: Run Sample Usecase
