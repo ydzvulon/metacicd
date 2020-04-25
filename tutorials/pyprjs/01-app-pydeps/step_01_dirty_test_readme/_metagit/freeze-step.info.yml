@@ -15,5 +15,10 @@ target:
     ref_repo: /tutorials/pyprjs/01-app-pydeps/step_01_dirty_test_readme
     state: init from source
     # action_cmd: git repo_pydeps
-    action_cmd: git add step_01_dirty_test_readme
+    action_cmd: |
+        git add step_01_dirty_test_readme \
+        && git commit -m"pydeps:tut: freeze step_01_dirty_test_readme"
+    action_name: freeze step with it change along with original change
+    commit: 3d6aec555a2b9489bc02b08552f0a6fe7025ef31
+    
 
