@@ -2,21 +2,21 @@
 - name: init tutorial step from dir repo
   source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
   commit: 3399a6b65decabc95b34173a98364c1a3080d4da
-  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_pytest/
-  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_pytest&kind=dir-tutorial-step 
+  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_venv_pytest/
+  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
 
 - name: init tutorial step from dir repo
   source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
   commit: 69ed7445292d36c0a17e4b4bef47ff3f62d53a50
-  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_pytest/
-  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_pytest&kind=dir-tutorial-step 
+  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_venv_pytest/
+  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
   timestamp_utc: 2020-04-25T21-19-24
 
 
 - name: init tutorial step from dir repo
   source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
   commit: d3ad6940a59aa1ec72fa383e58eb48af728f40d9
-  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_pytest/
-  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_pytest&kind=dir-tutorial-step 
+  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_venv_pytest/
+  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
   timestamp_utc: 2020-04-25T21-32-43
 
