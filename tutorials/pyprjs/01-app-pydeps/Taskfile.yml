@@ -1,0 +1,70 @@
+# https://taskfile.dev
+
+version: '2'
+
+vars:
+  GREETING: PyDeps Tutorial Creator
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -l
+    silent: true
+
+  _tut-step-03-init:
+    cmds:
+      - task do-tut-step TARGET=step_03_pytest
+
+  _require_target:
+    params:
+      TARGET: step name    
+    cmds:
+    - |
+      (echo "{{.TARGET}}" | grep  '<no value>') \
+      && echo "Usage: task <task name> TARGET=<step_name>" && exit 1 \
+      || echo "Initializing step dir"
+
+  init-tut-step:
+    desc: prepare new folder with same content as trunk and creates inital commit
+    params:
+      TARGET: step name
+    cmds:
+      - task _require_target TARGET="{{.TARGET}}"
+      - |
+        (echo "{{.TARGET}}" | grep  '<no value>') \
+        && echo "Usage: task init-tut-step TARGET=<step_name>" && exit 1 \
+        || echo "Initializing step dir"
+      - rsync -av repo_pydeps/ "{{.TARGET}}/"
+      - mkdir -p "{{.TARGET}}/_metagit"
+      - |
+        echo "
+        - name: init tutorial step from dir repo
+          source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
+          commit: $(git rev-parse HEAD)
+          cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ {{.TARGET}}/
+          target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/{{.TARGET}}&kind=dir-tutorial-step 
+          timestamp_utc: $(date -u +%Y-%m-%dT%H-%M-%S)
+        " | tee -a {{.TARGET}}/_metagit/meta-init.yml
+
+  commit-tut-step:
+    desc: _
+    params:
+      TARGET: step name
+    cmds:
+      - task _require_target TARGET="{{.TARGET}}"
+      - git add "{{.TARGET}}"
+      - |
+        git commit -m"pydeps:tut: init step {{.TARGET}}"
+
+  do-tut-step:
+    params:
+      TARGET: step name
+    cmds:
+      - task: init-tut-step 
+        # vars: 
+        #   TARGET: "{{.TARGET}}"
+      - task: commit-tut-step
+        # vars: 
+        #   TARGET: "{{.TARGET}}"
+
