@@ -1,4 +1,4 @@
-created:
+create-from:
     source:
         kind: dir-tutorial-repo
         org_repo: git@github.com:gzvulon/metacicd.git
@@ -12,6 +12,24 @@ created:
         reporef: tutorials/pyprjs/01-app-pydeps/step_02_task_actions
     action:
         name: init step with current repo state
+        org_repo: git@github.com:gzvulon/metacicd.git
+        cmd: rsync -av repo_pydeps/ step_02_task_actions/
+        reporef: tutorials/pyprjs/01-app-pydeps
+sync-from:
+    source:
+        kind: dir-tutorial-repo
+        org_repo: git@github.com:gzvulon/metacicd.git
+        cur_repo: self
+        reporef: tutorials/pyprjs/01-app-pydeps/repo_pydeps
+        commit: 297b11225cba4d3a6d9a33cdf069b03e44bfe12a
+    target:
+        kind: dir-tutorial-step
+        org_repo: git@github.com:gzvulon/metacicd.git
+        cur_repo: self
+        reporef: tutorials/pyprjs/01-app-pydeps/step_02_task_actions
+    action:
+        name: sync state of ancestor point to this one
+        desc: close step
         org_repo: git@github.com:gzvulon/metacicd.git
         cmd: rsync -av repo_pydeps/ step_02_task_actions/
         reporef: tutorials/pyprjs/01-app-pydeps
