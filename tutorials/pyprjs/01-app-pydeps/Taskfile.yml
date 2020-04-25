@@ -55,7 +55,7 @@ tasks:
       - task _require_target TARGET="{{.TARGET}}"
       - git add "{{.TARGET}}"
       - |
-        git commit -m"pydeps:tut: init step {{.TARGET}}"
+        git commit -m"pydeps:tut: sync to step {{.TARGET}}"
 
   do-tut-step:
     params:
