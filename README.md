@@ -37,3 +37,15 @@ Get Started With Python
 Create a simple cli app with fire and setuptools to evaluate current virtual environments.
 Use cona for simplicity of spin up with python version and venv.
 vpy - analize current virtual environment. (pick on poetry code)
+
+## References
+
+- https://github.com/gzvulon/pydocflow
+- https://github.com/gzvulon/taskcicd
+- https://github.com/gzvulon/gotaskpy
+- https://github.com/gzvulon/taskenrty
+- https://github.com/gzvulon/pypisrv
+- https://github.com/gzvulon/mvp_jin_dockers
+- https://github.com/gzvulon/mvp_jin_cli
+- https://github.com/gzvulon/mvp_jin_sys_jobs
+- https://github.com/gzvulon/metacicd
