@@ -31,5 +31,9 @@ sync-from:
         name: sync state of ancestor point to this one
         desc: close step
         org_repo: git@github.com:gzvulon/metacicd.git
-        cmd: rsync -av repo_pydeps/ step_02_task_actions/
+        cmd: |
+            rsync -av repo_pydeps/ step_02_task_actions/ \
+            && git add step_02_task_actions \
+            && git commit -m"pydeps: tut: sync step 02 task actions"
         reporef: tutorials/pyprjs/01-app-pydeps
+        commit: 42d431f75a95c0fe98e43f2df94b687beb6c0f10
