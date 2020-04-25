@@ -12,7 +12,7 @@ tasks:
       - task -l
     silent: true
 
-  _tut-step-03-init:
+  _tut-step-03-sync:
     cmds:
       - TARGET=step_03_venv_pytest task do-tut-step 
 
