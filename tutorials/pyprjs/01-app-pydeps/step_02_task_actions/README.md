@@ -5,32 +5,32 @@
 This sample application with show some information
 about current virtual environment and loaded libraries
 
-It will have cli inteface `./pydes --info`
+It will have cli inteface `./pydeps/pydeps.py --info`
 
-## Run
+## Test
 
-> In repo_pydeps dir run
+> In step_02_task_actions dir run
 
 ```bash
-python pydeps/pydeps.py --info
+task test
 ```
+> Output
+
+    === test:test started ===
+    Success found getpass in list of 76 modules
+    === test:test passed ===
+
+## Sample Run
+
+> In step_02_task_actions dir run
+
+```bash
+task run
+```
+
 > Output
 
     ...
      'zope'}}
     Loaded Modules Count: 77
     Hello from pydeps ...
-
-## Test
-
-> In repo_pydeps dir run
-
-```bash
-python pydeps/pydeps.py --test
-```
-
-> Output
-
-    === test:test started ===
-    Success found getpass in list of 76 modules
-    === test:test passed ===

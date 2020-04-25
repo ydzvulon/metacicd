@@ -1,0 +1,31 @@
+# https://taskfile.dev
+
+version: '2'
+
+vars:
+  GREETING: Pydeps
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -l
+    silent: true
+
+  test:
+    desc: Run tests on pydeps
+    cmds:
+      - python pydeps/pydeps.py --test
+
+  run:
+    desc: Run Sample Usecase
+    cmds:
+      - python pydeps/pydeps.py --info
+
+  readme:
+    desc: Show Readme
+    cmds:
+      - cat README.md
+    silent: yes
+
+
