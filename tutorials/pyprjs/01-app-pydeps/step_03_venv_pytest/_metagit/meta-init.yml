@@ -20,3 +20,11 @@
   target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
   timestamp_utc: 2020-04-25T21-32-43
 
+
+- name: init tutorial step from dir repo
+  source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
+  commit: 80ae50a5203c3d7d2d738582c0dca6b86d380987
+  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_venv_pytest/
+  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
+  timestamp_utc: 2020-04-25T22-52-49
+
