@@ -39,7 +39,7 @@ tasks:
       - mkdir -p "{{.TARGET}}/_metagit"
       - |
         echo "
-        - name: init tutorial step from dir repo
+        - name: sync tutorial step from dir repo
           source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
           commit: $(git rev-parse HEAD)
           cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ {{.TARGET}}/
