@@ -28,3 +28,11 @@
   target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
   timestamp_utc: 2020-04-25T22-52-49
 
+
+- name: sync tutorial step from dir repo
+  source: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/repo_pydeps&kind=dir-tutorial-repo 
+  commit: 6126778a48eff89d2f1df15181d8bfb9fa73f933
+  cmd: cd tutorials/pyprjs/01-app-pydeps && rsync -av repo_pydeps/ step_03_venv_pytest/
+  target: git@github.com:gzvulon/metacicd.git/tutorials/pyprjs/01-app-pydeps/step_03_venv_pytest&kind=dir-tutorial-step 
+  timestamp_utc: 2020-04-25T23-33-00
+
