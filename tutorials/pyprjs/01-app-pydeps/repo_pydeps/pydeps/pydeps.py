@@ -1,14 +1,22 @@
 import sys
 import getpass
 import subprocess
+import requests
 
 
 def analize():
+    import requests
     report = {}
     report.update(analize_loaded())
     report.update(analize_pip_list())
     report.update(analize_pip_freeze())
-    return report
+    loaded = set(k for (k,v) in report['modules.loaded.list'])
+    pip_freeze_loaded = {k: v for (k, v) in report['modules.pip-freeze.list'] if k in loaded}
+    report2 = {}
+    report2['pip_freeze_loaded'] = pip_freeze_loaded
+    report2['modules.pip-freeze.list'] = report['modules.pip-freeze.list']
+    report2['modules.loaded.list'] = report['modules.loaded.list']
+    return report2
 
 def _get_v(it):
     import pkg_resources
@@ -20,10 +28,10 @@ def _get_v(it):
     #     return "NA"
 
 def analize_loaded():
-    loaded = {
+    loaded = [
         (k, '')
         for k, v in list(sys.modules.items())
-        if not k.startswith('_') and k not in sys.builtin_module_names}
+        if not k.startswith('_') and k not in sys.builtin_module_names]
     return {'modules.loaded.list': loaded}
 
 
@@ -56,8 +64,11 @@ def main():
     print("Analizing Interpreter and Virtual Environment")
     import pprint
     report = analize()
-    print(pprint.pformat(report))
-    print(f"Loaded Modules Count: {len(report['modules.loaded.list'])}")
+    # print("modules.pip-freeze.list")
+    # print(pprint.pformat(report['modules.pip-freeze.list']))
+    print("pip_freeze_loaded")
+    print(pprint.pformat(report['pip_freeze_loaded']))
+    print(f"Freeze Modules Count: {len(report['modules.pip-freeze.list'])}")
     print(f"Hello from pydeps to {getpass.getuser()}")
 
 
