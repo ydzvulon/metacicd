@@ -11,6 +11,11 @@ tasks:
       - echo "{{.GREETING}}"
       - task -l
     silent: true
+  
+  venv-install:
+    desc: _
+    cmds:
+      - python -m pip install -r pydeps/requirements-dev.txt
 
   test:
     desc: Run tests on pydeps
@@ -32,6 +37,7 @@ tasks:
   ci-build:
     desc: build as ci cd
     cmds:
+      - task venv-install
       - task test
       - task run
 
