@@ -1,4 +1,4 @@
-// @Library("jenlib@master") _
+@Library("jenlib@master") _
 // ===== /SHARED PART ====
 
 // --- globas vars ---
@@ -61,12 +61,12 @@ timestamps {
         echo 'Fetch source'
         def scmvars = checkout scm
         def more = "repo_validate"
-      //   jen.set_build_name(currentBuild, scmvars, more)
-      //   jg['scmvars'] = scmvars
+        jen.set_build_name(currentBuild, scmvars, more)
+        jg['scmvars'] = scmvars
     }
 
     stage('commits'){
-      //   jen.desc_from_commits(currentBuild, jg)
+        jen.desc_from_commits(currentBuild, jg)
     }
 
     catchError {
@@ -75,7 +75,7 @@ timestamps {
         }
     }
 
-   //  stage('finish'){
+    stage('finish'){
    //      def test_passed = readFile "build_info/tests_passed_report.txt"
    //      test_passed = test_passed.replace('passed', 'ok').replace('warnings', 'warn').replace('seconds', 's')
    //      def total_cov = readFile "build_info/coverage_total.txt"
@@ -92,5 +92,5 @@ timestamps {
    //          reportFiles: 'index.html',
    //          reportName: "RCov Report"
    //      ])
-   //  }
+    }
 }}
