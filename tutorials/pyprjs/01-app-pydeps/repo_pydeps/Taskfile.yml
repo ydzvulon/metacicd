@@ -1,6 +1,6 @@
 # https://taskfile.dev
 
-version: '2'
+version: '2.3'
 
 vars:
   GREETING: Pydeps
@@ -12,16 +12,34 @@ tasks:
       - task -l
     silent: true
   
+
+  install-tox:
+    desc: _ # to include in `task -l` list
+    cmds:
+      - python -m pip install tox
+    status:
+      - which tox
+      
   venv-install:
     desc: _
     cmds:
       - python -m pip install -r pydeps/requirements-dev.txt
+      - task: install-tox
+
 
   test:
     desc: Run tests on pydeps
     cmds:
       - python -m pytest pydeps -s
       # - python pydeps/pydeps.py --test
+  
+  test-ci:
+    desc: Run tests on pydeps
+    cmds:
+      # - tox # until package will be formalized
+      - task: test
+      # - python pydeps/pydeps.py --test
+    
 
   run:
     desc: Run Sample Usecase
@@ -38,7 +56,7 @@ tasks:
     desc: build as ci cd
     cmds:
       - task venv-install
-      - task test
+      - task test-ci
       - task run
 
 
