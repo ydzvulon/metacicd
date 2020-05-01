@@ -29,4 +29,11 @@ tasks:
       - cat README.md
     silent: yes
 
+  ci-build:
+    desc: build as ci cd
+    cmds:
+      - task test
+      - task run
+
+
 
