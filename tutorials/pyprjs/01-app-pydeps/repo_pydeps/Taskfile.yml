@@ -18,6 +18,46 @@ tasks:
       - pytest pydeps -s
       # - python pydeps/pydeps.py --test
 
+  test-sanity:
+    desc: Run tests on pydeps
+    cmds:
+      - pytest pydeps -k sanity -s
+      # - python pydeps/pydeps.py --test
+
+  test-full:
+    desc: Run tests on pydeps
+    cmds:
+      - pytest pydeps -k sanity -s
+
+  test-long:
+    desc: Run tests on pydeps
+    cmds:
+      - pytest pydeps -k sanity -s
+
+  demo:
+    desc: Please use TARGET=
+    cmds:
+      - echo '{{.TARGET}}'
+      - |
+        echo $TARGET \
+        ls && 
+        $()
+
+  _common: &ref_commmon
+    desc: _
+    env:
+      HHH: hh
+    cmds:
+      - echo entry1
+    silent: yes
+
+  entry1: 
+    <<: *ref_commmon
+    cmds:
+      - echo entry1
+    silent: yes
+
+
   run:
     desc: Run Sample Usecase
     cmds:
