@@ -1,0 +1,72 @@
+# https://taskfile.dev
+
+version: '2.3'
+
+vars:
+  GREETING: Tasks Tutorial
+  TSK_GIT_BRANCH:
+    sh: git rev-parse --abbrev-ref HEAD
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+      - task -l
+    silent: true
+
+  _test:
+    desc: to pass the test run with UNDEFINED_VAR=1
+    cmds:
+      - echo "{{.UNDEFINED_VAR}}"
+      - |
+        (echo "{{.UNDEFINED_VAR}}" | grep '<no value>') \
+          && echo "@@[test.result=fail][name=_test] at $(pwd)" \
+          && exit 1 \
+          || true
+      - echo "@@@[test.result=pass][name=_test] at $(pwd)"
+
+  _test:pass:
+    desc: test that verifies "positive path" or "pass" scenario
+    cmds:
+      - task _test UNDEFINED_VAR=1 | grep 'test.result=pass'
+
+  _test:fail:
+    desc: test that verifies "negative path" or "fail" scenario
+    cmds:
+      - task _test | grep 'test.result=fail'
+      - task _test && exit 1 || echo "all good! _test should fail"
+
+  _test:all:
+    desc: test suite that run tests provided in vars.subtests as parallel
+    vars:
+      subtests: pass fail
+    cmds:
+      - |
+        echo "{{.subtests}}" \
+        | xargs -n 1 | xargs -P2 -I {} \
+        task _test:{}
+      - echo "@@[test_suite.list={{.subtests}}][test_suite.result=pass]"
+
+  readme:
+    desc: show README.md
+    cmds:
+      - |
+        echo '
+        # Tasker Tutorial
+
+        > `task _test`
+
+        Example of how task initialize undifined variables.
+
+        > `task _test:fail`
+
+        Example of task-bash based assert system
+
+        > `task _test:all`
+
+        Example of task-bash-xargs based parallel test runner
+        '
+  gen-readme:
+    desc: generate static README.md fil
+    cmds:
+      - task readme > README.md
