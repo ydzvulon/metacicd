@@ -54,18 +54,28 @@ tasks:
         echo '
         # Tasker Tutorial
 
-        > `task _test`
+        ### Example of how task initialize undifined variables.
+        ```
+        task _test
+        ```
+        
+        ### Example of task-bash based assert system
+        ```
+        task _test:fail
+        ```
 
-        Example of how task initialize undifined variables.
-
-        > `task _test:fail`
-
-        Example of task-bash based assert system
-
-        > `task _test:all`
-
-        Example of task-bash-xargs based parallel test runner
+        ### Example of task-bash-xargs based parallel test runner
+        ```
+        task _test:all
+        ```
         '
+      
+      - echo '> OUTPUT'
+      - echo '```'
+      - echo "$(task _test:all)"
+      - echo '```'
+    silent: yes
+
   gen-readme:
     desc: generate static README.md fil
     cmds:
