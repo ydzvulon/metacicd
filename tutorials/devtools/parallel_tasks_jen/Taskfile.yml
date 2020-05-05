@@ -9,7 +9,7 @@ vars:
 # test1
 # test2
 # ...
-# test sute B
+# test suite B
 # test1
 # test2
 tasks:
@@ -23,30 +23,42 @@ tasks:
     cmds:
       - echo pytest -n 4 test_suite__sanity
       
-  test:sute-a:
+  test:suite-a:
     desc: _
     cmds:
       - echo pytest -n 4 test_suite__sanity
   
-  test:sute-b:
+  test:suite-b:
     desc: _
     cmds:
       - echo pytest -n 4 test_suite__sanity
 
-  stage:multistage:
+  stage:multistage:task-deps:
     desc: _
     # dependancies evaluation are in parllel
     deps:
-      - task: test:sute-a
-      - task: test:sute-b
+      - task: test:suite-a
+      - task: test:suite-b
     cmds:
       - echo postprosessing
       - echo "@@[task=stage:multistage][result=pass]"
 
-  stage:multistage2:
+  stage:multistage:task-p:
     desc: _
     # dependancies evaluation are in parllel
     cmds:
-      - task -p test:sute-atest:sute-b
+      - task -p test:suite-a test:suite-b
+      - echo postprosessing
+      - echo "@@[task=stage:multistage][result=pass]"
+
+  stage:multistage:xargs-p:
+    desc: _
+    vars:
+      suites: "test:suite-a test:suite-b"
+    cmds:
+      - |
+        echo "{{.suites}}" \
+        | xargs -n 1 | xargs -I {} -P2 \
+        echo task {}
       - echo postprosessing
       - echo "@@[task=stage:multistage][result=pass]"
