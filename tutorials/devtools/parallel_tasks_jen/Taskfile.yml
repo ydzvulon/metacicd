@@ -81,3 +81,4 @@ tasks:
     desc: _
     cmds:
       - echo "Artifacts are:"
+      - echo "TODO; use jenkins xml test reports"
