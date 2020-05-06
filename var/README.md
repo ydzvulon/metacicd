@@ -1,6 +1,6 @@
 # Jen Groovy - Jenkins Task Execution Library
 
-Jen implemented as a step for scripted pipelines,
+[Jen](./jen.groovy) implemented as a step for scripted pipelines,
 allowing to run Taskfile as it were native jenkins stage
 
 ## Usage
