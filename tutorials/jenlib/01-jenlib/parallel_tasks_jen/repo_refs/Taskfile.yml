@@ -1,0 +1,31 @@
+# https://taskfile.dev
+
+version: '2'
+
+vars:
+  GREETING: Hello, World!
+  PRJ_NAME: jenlib
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  git:clone:
+    cmds:
+      - git clone "git@github.com:gzvulon/{{.PRJ_NAME}}.git"
+
+  git:update:
+    cmds:
+      - |
+        test -d "{{.PRJ_NAME}}" \
+        && git -C "{{.PRJ_NAME}}" pull \
+        || task git:clone
+
+  git:ignore:
+    cmds:
+      - test .gitignore || touch .gitignore
+      - |
+        cat .gitignore | grep {{.PRJ_NAME}} \
+        || echo {{.PRJ_NAME}} >> .gitignore
