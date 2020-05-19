@@ -13,10 +13,12 @@ tasks:
     silent: true
 
   git:clone:
+    desc: _
     cmds:
       - git clone "git@github.com:gzvulon/{{.PRJ_NAME}}.git"
 
   git:update:
+    desc: _
     cmds:
       - |
         test -d "{{.PRJ_NAME}}" \
@@ -24,6 +26,7 @@ tasks:
         || task git:clone
 
   git:ignore:
+    desc: _
     cmds:
       - test .gitignore || touch .gitignore
       - |
