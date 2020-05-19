@@ -1,0 +1,21 @@
+- _update: 2020-05-19--20-20-06
+
+  source:
+    git: https://github.com/gzvulon/jenlib.git
+    kind: library-repo
+    subpath: .
+    content:
+        commit: 173545a2d16f844a5efd5ca4665e2a9aa1c48fb2
+        Author: Yair Dar
+        Date:   Tue May 19 23:05:46 2020 +0300
+        Message: Initial commit
+
+  target:
+    git: https://github.com/gzvulon/metacicd.git
+    kind: repo_refs
+    subpath: tutorials/jenlib/01-jenlib/parallel_tasks_jen/repo_refs/jenlib
+    content:
+        commit: c317cd1f1b5f1ee07e0513661fd5220c1e9b845c
+        Author: Yair Dar
+        Date:   Tue May 19 23:15:44 2020 +0300
+        Message: link lib from external git repo
