@@ -27,7 +27,7 @@ node() {timestamps {
         jen.desc_from_commits(currentBuild, jg)
     }
 
-    catchError { dir('metacicd/tutorials/jenlib/01-jenlib/parallel_tasks_jen'){
+    catchError { dir('tutorials/jenlib/01-jenlib/parallel_tasks_jen'){
         jen.step_stages_from_tasks(
             jg, jg.prj_dir,
             'Taskfile.yml', 'ci-flow')
