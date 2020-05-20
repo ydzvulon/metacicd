@@ -1,3 +1,7 @@
+#!/usr/bin/env groovy
+
+//  jen.groovy
+
 def set_build_name(_currentBuild, scmvars, more){
     // set build name from scmvars
     _currentBuild.displayName = _currentBuild.displayName + "-" + [
@@ -29,17 +33,43 @@ def step_stages_from_tasks(jg, wd, filename, root_job){
         def _cmd = jg.cmds[i]
         def name = ""
         def cmd = ""
+        def deps = []
+        def dp_cmds = []
         try {
             name = _cmd['task']
             cmd = "task ${name}"
+            def content = taskfile['tasks'][name]
+            if (content.deps){
+                deps = content.deps
+                dp_cmds = content.cmds
+            }
         }
         catch(Exception e) {
             name = _cmd
             cmd = _cmd
+            deps = []
+
         }
-        stage(name){
-            dir(wd){
-                sh cmd
+        if (deps) {
+            stage("deps:$name"){
+                dir(wd){
+                    def actors = jinMakeParallel(deps, {dname -> sh "task $dname"})
+                    parallel actors
+                }
+            }
+            stage(name){
+                dir(wd){
+                    for (int j = 0; j < dp_cmds.size(); j++) {
+                        def s_cmd = dp_cmds[j]
+                        sh s_cmd
+                    }
+                }
+            }
+        } else {
+            stage(name){
+                dir(wd){
+                    sh cmd
+                }
             }
         }
     }
