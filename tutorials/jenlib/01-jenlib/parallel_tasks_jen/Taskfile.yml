@@ -16,6 +16,7 @@ tasks:
   default:
     cmds:
       - echo "{{.GREETING}}"
+      - task -l
     silent: true
 
   stage:build:
@@ -28,12 +29,12 @@ tasks:
     desc: _
     cmds:
       - echo pytest -n 4 test_suite__sanity
-      
+
   test:suite-a:
     desc: _
     cmds:
       - echo pytest -n 4 test_suite__sanity
-  
+
   test:suite-b:
     desc: _
     cmds:
